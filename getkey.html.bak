@@ -178,7 +178,7 @@
 </head>
 <body>
   <div class="card">
-    <div class="logo">ZedPing</div>
+    <div class="logo">Zed</div>
     <p class="subtitle">Key của bạn</p>
 
     <div class="loading" id="loading">

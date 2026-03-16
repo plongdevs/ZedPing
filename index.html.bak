@@ -177,6 +177,20 @@
       margin: 24px 0;
     }
 
+    .getkey-link {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .getkey-link a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .getkey-link a:hover { text-decoration: underline; }
+
     .limit-note {
       background: rgba(124,58,237,.08);
       border: 1px solid rgba(124,58,237,.2);
@@ -218,6 +232,11 @@
     <div class="msg" id="msg"></div>
 
     <hr class="divider" />
+
+    <p class="getkey-link">
+      Đã có key? <a href="getkey.html">Kiểm tra tại đây →</a>
+    </p>
+  </div>
 
   <script>
     // ← Đổi thành Worker URL của bạn
