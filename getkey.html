@@ -79,30 +79,6 @@
       margin-bottom: 28px;
     }
 
-    /* Loading */
-    .loading {
-      text-align: center;
-      padding: 20px 0;
-    }
-
-    .spinner {
-      width: 32px;
-      height: 32px;
-      border: 3px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin .7s linear infinite;
-      margin: 0 auto 12px;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .loading p {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    /* Error */
     .msg-error {
       background: rgba(239,68,68,.1);
       border: 1px solid rgba(239,68,68,.3);
@@ -114,7 +90,6 @@
       display: none;
     }
 
-    /* Key result */
     .key-result {
       display: none;
       background: rgba(34,197,94,.06);
@@ -139,25 +114,8 @@
       color: #fff;
       letter-spacing: 1px;
       word-break: break-all;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
-
-    .key-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .key-meta-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-    }
-
-    .key-meta-row span:first-child { color: var(--muted); }
-    .key-meta-row span:last-child  { color: #d1fae5; font-weight: 600; }
 
     .copy-btn {
       width: 100%;
@@ -181,87 +139,48 @@
     <div class="logo">ZedPing</div>
     <p class="subtitle">Key của bạn</p>
 
-    <div class="loading" id="loading">
-      <div class="spinner"></div>
-      <p>Đang tải key...</p>
-    </div>
-
     <div class="msg-error" id="errMsg"></div>
 
     <div class="key-result" id="result">
       <div class="key-result-label">✅ Key hợp lệ</div>
       <div class="key-value" id="r-key"></div>
-      <div class="key-meta">
-        <div class="key-meta-row">
-          <span>Loại</span>
-          <span id="r-type"></span>
-        </div>
-        <div class="key-meta-row">
-          <span>Hết hạn lúc</span>
-          <span id="r-expiry"></span>
-        </div>
-        <div class="key-meta-row">
-          <span>Còn lại</span>
-          <span id="r-timeleft"></span>
-        </div>
-      </div>
       <button class="copy-btn" onclick="copyKey()">📋 Sao chép Key</button>
     </div>
   </div>
 
   <script>
-    // ← Đổi thành Worker URL của bạn
-    const WORKER_URL = "https://YOUR_WORKER.workers.dev";
+    const errMsg = document.getElementById("errMsg");
+    const result = document.getElementById("result");
 
-    const loading = document.getElementById("loading");
-    const errMsg  = document.getElementById("errMsg");
-    const result  = document.getElementById("result");
+    const key = new URLSearchParams(location.search).get("key") || "";
 
-    function showError(text) {
-      loading.style.display = "none";
-      errMsg.textContent = text;
+    if (key) {
+      document.getElementById("r-key").textContent = key;
+      result.style.display = "block";
+    } else {
+      errMsg.textContent = "❌ Không tìm thấy key. Vui lòng quay lại và hoàn thành quảng cáo!";
       errMsg.style.display = "block";
     }
 
-    async function loadKey() {
-      const params = new URLSearchParams(window.location.search);
-      const key    = params.get("key"); // dùng ?key=
-
-      if (!key) {
-        showError("❌ Không tìm thấy key. Vui lòng quay lại và hoàn thành quảng cáo!");
-        return;
-      }
-
-      try {
-        const res  = await fetch(`${WORKER_URL}/getkey?key=${encodeURIComponent(key)}`);
-        const data = await res.json();
-
-        loading.style.display = "none";
-
-        if (data.success) {
-          document.getElementById("r-key").textContent      = data.key;
-          document.getElementById("r-type").textContent     = data.type === "NormalKey" ? "Key 24h" : data.type;
-          document.getElementById("r-expiry").textContent   = data.expiry;
-          document.getElementById("r-timeleft").textContent = data.timeLeft;
-          result.style.display = "block";
-        } else {
-          showError("❌ " + (data.message || "Key không hợp lệ!"));
-        }
-      } catch (e) {
-        showError("❌ Không kết nối được server. Thử lại!");
-      }
-    }
-
     function copyKey() {
-      const key = document.getElementById("r-key").textContent;
-      navigator.clipboard.writeText(key).then(() => {
-        const cb = document.querySelector(".copy-btn");
+      const cb = document.querySelector(".copy-btn");
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(key).then(() => {
+          cb.textContent = "✅ Đã sao chép!";
+          setTimeout(() => { cb.textContent = "📋 Sao chép Key"; }, 2000);
+        });
+      } else {
+        // fallback mobile
+        const tmp = document.createElement("textarea");
+        tmp.value = key;
+        document.body.appendChild(tmp);
+        tmp.select(); tmp.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        document.body.removeChild(tmp);
         cb.textContent = "✅ Đã sao chép!";
         setTimeout(() => { cb.textContent = "📋 Sao chép Key"; }, 2000);
-      });
+      }
     }
-
-    loadKey();
   </script>
 </body>
 </html>
