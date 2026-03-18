@@ -225,7 +225,7 @@
 
     async function loadKey() {
       const params = new URLSearchParams(window.location.search);
-      const key    = params.get("key");
+      const key    = params.get("key"); // dùng ?key=
 
       if (!key) {
         showError("❌ Không tìm thấy key. Vui lòng quay lại và hoàn thành quảng cáo!");
@@ -233,7 +233,7 @@
       }
 
       try {
-        const res  = await fetch(`${WORKER_URL}/getkey?k=${encodeURIComponent(key)}`);
+        const res  = await fetch(`${WORKER_URL}/getkey?key=${encodeURIComponent(key)}`);
         const data = await res.json();
 
         loading.style.display = "none";
