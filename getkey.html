@@ -1,186 +1,353 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Key của bạn - ZedPing</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FakeLag — Key của bạn</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #08090e;
+    --panel:   #0d0f18;
+    --border:  rgba(255,140,0,0.15);
+    --accent:  #ff8c00;
+    --accent2: #ffb347;
+    --dim:     rgba(255,140,0,0.08);
+    --text:    #f0ede8;
+    --muted:   #6b6560;
+    --red:     #ff3b30;
+    --green:   #30d158;
+  }
 
-    :root {
-      --bg:      #0f1117;
-      --surface: #181c27;
-      --border:  #2a2f3e;
-      --accent:  #4f9eff;
-      --accent2: #7c3aed;
-      --text:    #e8eaf0;
-      --muted:   #6b7280;
-    }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Sora', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow-x: hidden;
+  }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(79,158,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(79,158,255,.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-    }
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,140,0,0.07), transparent),
+      repeating-linear-gradient(
+        0deg,
+        transparent, transparent 39px,
+        rgba(255,140,0,0.03) 39px, rgba(255,140,0,0.03) 40px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent, transparent 39px,
+        rgba(255,140,0,0.03) 39px, rgba(255,140,0,0.03) 40px
+      );
+    pointer-events: none;
+  }
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px 36px;
-      width: 100%;
-      max-width: 420px;
-      position: relative;
-      overflow: hidden;
-    }
+  .wrap {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 400px;
+  }
+  .wrap::before, .wrap::after, .corner-br, .corner-bl {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    border-color: var(--accent);
+    border-style: solid;
+    opacity: 0.6;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .wrap::before { top: -1px; left: -1px;  border-width: 2px 0 0 2px; }
+  .wrap::after  { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+  .corner-br    { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+  .corner-bl    { bottom: -1px; left: -1px;  border-width: 0 0 2px 2px; }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent2), var(--accent));
-    }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 36px 32px 32px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease forwards;
+  }
 
-    .logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 6px;
-    }
+  @keyframes scan {
+    0%   { transform: translateY(-100%); opacity: 0; }
+    20%  { opacity: 1; }
+    80%  { opacity: 1; }
+    100% { transform: translateY(700%); opacity: 0; }
+  }
+  .card::after {
+    content: '';
+    position: absolute; left: 0; right: 0;
+    height: 1px; top: 0;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    animation: scan 5s ease-in-out infinite;
+    pointer-events: none;
+  }
 
-    .subtitle {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 28px;
-    }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-    .msg-error {
-      background: rgba(239,68,68,.1);
-      border: 1px solid rgba(239,68,68,.3);
-      border-radius: 10px;
-      padding: 16px;
-      color: #fca5a5;
-      font-size: 13px;
-      text-align: center;
-      display: none;
-    }
+  /* ── Header ── */
+  .header { margin-bottom: 28px; }
+  .sys-tag {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.6rem;
+    color: var(--accent);
+    letter-spacing: 3px;
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .logo {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text);
+    line-height: 1;
+  }
+  .logo em { font-style: normal; color: var(--accent); }
+  .tagline {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
 
-    .key-result {
-      display: none;
-      background: rgba(34,197,94,.06);
-      border: 1px solid rgba(34,197,94,.25);
-      border-radius: 12px;
-      padding: 20px;
-    }
+  .div {
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    margin: 24px 0;
+    opacity: 0.25;
+  }
 
-    .key-result-label {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #4ade80;
-      margin-bottom: 10px;
-    }
+  /* ── Key display ── */
+  .key-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
 
-    .key-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 18px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 1px;
-      word-break: break-all;
-      margin-bottom: 20px;
-    }
+  .key-box {
+    background: rgba(48,209,88,0.05);
+    border: 1px solid rgba(48,209,88,0.25);
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .key-box.error-box {
+    background: rgba(255,59,48,0.06);
+    border-color: rgba(255,59,48,0.25);
+  }
+  .key-status {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .key-status .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: blink 2s infinite;
+  }
+  .key-status.err .dot {
+    background: var(--red);
+    box-shadow: 0 0 8px var(--red);
+    animation: none;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+  }
+  .key-status span { color: var(--green); }
+  .key-status.err span { color: var(--red); }
 
-    .copy-btn {
-      width: 100%;
-      padding: 12px;
-      background: rgba(34,197,94,.12);
-      border: 1px solid rgba(34,197,94,.3);
-      border-radius: 8px;
-      color: #4ade80;
-      font-family: 'Sora', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all .2s;
-    }
+  .key-value {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 2px;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+  .key-value.empty {
+    color: var(--red);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
 
-    .copy-btn:hover { background: rgba(34,197,94,.22); }
-  </style>
+  /* ── Copy button ── */
+  .btn-copy {
+    width: 100%;
+    padding: 16px;
+    background: transparent;
+    border: 1px solid rgba(48,209,88,0.4);
+    border-radius: 4px;
+    color: var(--green);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-copy::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--green);
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+  .btn-copy:hover::before { transform: translateX(0); }
+  .btn-copy:hover { color: #000; }
+  .btn-copy:active { transform: scale(0.99); }
+  .btn-copy span { position: relative; z-index: 1; }
+  .btn-copy:disabled {
+    opacity: 0.3; cursor: not-allowed;
+  }
+  .btn-copy:disabled::before { display: none; }
+
+  .footer-tag {
+    margin-top: 20px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.58rem;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-align: center;
+    opacity: 0.5;
+  }
+
+  /* toast */
+  .toast {
+    position: fixed; bottom: 28px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(13,15,24,0.95);
+    border: 1px solid rgba(48,209,88,0.35);
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.72rem;
+    color: var(--green);
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: all 0.25s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 999;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
 </head>
 <body>
+
+<div class="wrap">
+  <span class="corner-br"></span>
+  <span class="corner-bl"></span>
   <div class="card">
-    <div class="logo">ZedPing</div>
-    <p class="subtitle">Key của bạn</p>
 
-    <div class="msg-error" id="errMsg"></div>
-
-    <div class="key-result" id="result">
-      <div class="key-result-label">✅ Key hợp lệ</div>
-      <div class="key-value" id="r-key"></div>
-      <button class="copy-btn" onclick="copyKey()">📋 Sao chép Key</button>
+    <div class="header">
+      <span class="sys-tag">// Key của bạn</span>
+      <div class="logo">Fake<em>Lag</em></div><!-- ← Đổi tên app -->
+      <div class="tagline" id="subLine">&gt; key loaded successfully</div>
     </div>
+
+    <div class="div"></div>
+
+    <span class="key-label">// Key của bạn</span>
+    <div class="key-box" id="keyBox">
+      <div class="key-status" id="keyStatus">
+        <span class="dot"></span>
+        <span>Key khả dụng</span>
+      </div>
+      <div class="key-value" id="keyVal">—</div>
+    </div>
+
+    <button class="btn-copy" id="btnCopy" onclick="copyKey()">
+      <span id="btnText">[ COPY KEY ]</span>
+    </button>
+
   </div>
+</div>
 
-  <script>
-    const errMsg = document.getElementById("errMsg");
-    const result = document.getElementById("result");
+<div class="footer-tag">FakeLag KEY SYSTEM — AUTHORIZED ACCESS ONLY</div>
+<div class="toast" id="toast">✓ Đã copy key</div>
 
-    const key = new URLSearchParams(location.search).get("key") || "";
+<script>
+  const key    = new URLSearchParams(location.search).get('key') || '';
+  const keyVal = document.getElementById('keyVal');
+  const keyBox = document.getElementById('keyBox');
+  const status = document.getElementById('keyStatus');
+  const subLine = document.getElementById('subLine');
+  const btnCopy = document.getElementById('btnCopy');
 
-    if (key) {
-      document.getElementById("r-key").textContent = key;
-      result.style.display = "block";
+  if (key) {
+    keyVal.textContent = key;
+  } else {
+    keyVal.textContent  = 'KEY NOT FOUND';
+    keyVal.classList.add('empty');
+    keyBox.classList.add('error-box');
+    status.classList.add('err');
+    status.querySelector('span:last-child').textContent = 'ERROR';
+    subLine.textContent = '> invalid or missing key parameter';
+    btnCopy.disabled = true;
+  }
+
+  function copyKey() {
+    if (!key) return;
+    const btn  = document.getElementById('btnText');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(key).then(showToast).catch(fallback);
     } else {
-      errMsg.textContent = "❌ Không tìm thấy key. Vui lòng quay lại và hoàn thành quảng cáo!";
-      errMsg.style.display = "block";
+      fallback();
     }
+    btn.textContent = '[ COPIED! ]';
+    setTimeout(() => { btn.textContent = '[ COPY KEY ]'; }, 2000);
+  }
 
-    function copyKey() {
-      const cb = document.querySelector(".copy-btn");
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(key).then(() => {
-          cb.textContent = "✅ Đã sao chép!";
-          setTimeout(() => { cb.textContent = "📋 Sao chép Key"; }, 2000);
-        });
-      } else {
-        // fallback mobile
-        const tmp = document.createElement("textarea");
-        tmp.value = key;
-        document.body.appendChild(tmp);
-        tmp.select(); tmp.setSelectionRange(0, 99999);
-        document.execCommand("copy");
-        document.body.removeChild(tmp);
-        cb.textContent = "✅ Đã sao chép!";
-        setTimeout(() => { cb.textContent = "📋 Sao chép Key"; }, 2000);
-      }
-    }
-  </script>
+  function fallback() {
+    const tmp = document.createElement('textarea');
+    tmp.value = key;
+    document.body.appendChild(tmp);
+    tmp.select(); tmp.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+    document.body.removeChild(tmp);
+    showToast();
+  }
+
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+  }
+</script>
 </body>
 </html>
