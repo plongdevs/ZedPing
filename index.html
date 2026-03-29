@@ -1,258 +1,290 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lấy Key - ZedPing</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZedPing - Key Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:      #0f1117;
-      --surface: #181c27;
-      --border:  #2a2f3e;
-      --accent:  #4f9eff;
-      --accent2: #7c3aed;
-      --text:    #e8eaf0;
-      --muted:   #6b7280;
-      --success: #22c55e;
-      --error:   #ef4444;
+      --bg: #050508;
+      --card: rgba(20, 20, 25, 0.6);
+      --accent: #00e5ff;
+      --text: #ffffff;
+      --muted: #94a3b8;
+      --red: #ff2d55;
+      --border: rgba(255, 255, 255, 0.08);
+      --gold: #ffd700;
+      --green: #22c55e;
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Sora', sans-serif;
+      font-family: 'Inter', sans-serif;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px;
-    }
-
-    /* subtle grid bg */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(79,158,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(79,158,255,.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
+      padding: 20px;
     }
 
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px 36px;
       width: 100%;
-      max-width: 420px;
-      position: relative;
-      overflow: hidden;
+      max-width: 480px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      backdrop-filter: blur(24px);
     }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent2), var(--accent));
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
     }
 
     .logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 6px;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 32px;
-    }
-
-    .step-list {
-      list-style: none;
-      margin-bottom: 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .step-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 13px;
-      color: #9ca3af;
-      line-height: 1.5;
-    }
-
-    .step-num {
-      background: var(--border);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.8rem;
       color: var(--accent);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
+      text-shadow: 0 0 20px var(--accent);
+      letter-spacing: 4px;
+    }
+
+    .tagline {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    .sec-label {
+      font-size: 0.62rem;
       font-weight: 700;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      font-family: 'Share Tech Mono', monospace;
     }
 
-    .btn {
+    .key-info {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 140, 0, 0.1));
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      padding: 20px 16px;
+      text-align: center;
+      margin-bottom: 22px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+    }
+
+    .key-duration {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-shadow: 0 0 14px rgba(255, 215, 0, 0.5);
+      margin-bottom: 8px;
+    }
+
+    .key-links {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: 'Share Tech Mono', monospace;
+      letter-spacing: 1px;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 20px 0;
+    }
+
+    .input-group {
+      margin-bottom: 22px;
+    }
+
+    .input-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      font-family: 'Share Tech Mono', monospace;
+      display: block;
+    }
+
+    .input-field {
       width: 100%;
-      padding: 14px;
+      padding: 14px 16px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--text);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.95rem;
+      transition: 0.2s;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
+    }
+
+    .input-field::placeholder {
+      color: var(--muted);
+    }
+
+    .btn-gen {
+      width: 100%;
+      padding: 16px;
       border: none;
-      border-radius: 10px;
-      font-family: 'Sora', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--gold) 0%, #ff8c00 100%);
+      color: #000;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
       cursor: pointer;
-      transition: all .2s;
-      position: relative;
-      overflow: hidden;
+      transition: 0.2s;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #fff;
+    .btn-gen:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
     }
 
-    .btn-primary:hover:not(:disabled) {
-      opacity: .88;
-      transform: translateY(-1px);
-    }
-
-    .btn-primary:disabled {
-      opacity: .5;
+    .btn-gen:disabled {
+      opacity: 0.5;
       cursor: not-allowed;
       transform: none;
     }
 
-    .spinner {
+    .btn-spinner {
+      display: inline-block;
       width: 16px;
       height: 16px;
-      border: 2px solid rgba(255,255,255,.3);
-      border-top-color: #fff;
+      border: 2px solid rgba(0, 0, 0, 0.3);
+      border-top-color: #000;
       border-radius: 50%;
-      animation: spin .7s linear infinite;
-      display: inline-block;
+      animation: spin 0.6s linear infinite;
       vertical-align: middle;
       margin-right: 8px;
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .msg {
+    .message-box {
       margin-top: 16px;
-      padding: 12px 14px;
-      border-radius: 8px;
-      font-size: 13px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-family: 'Share Tech Mono', monospace;
       display: none;
     }
 
-    .msg.error   { background: rgba(239,68,68,.1);  border: 1px solid rgba(239,68,68,.3);  color: #fca5a5; display: block; }
-    .msg.success { background: rgba(34,197,94,.1);  border: 1px solid rgba(34,197,94,.3);  color: #86efac; display: block; }
-    .msg.info    { background: rgba(79,158,255,.08); border: 1px solid rgba(79,158,255,.25); color: #93c5fd; display: block; }
-
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 24px 0;
+    .message-box.error {
+      background: rgba(255, 45, 85, 0.08);
+      border: 1px solid rgba(255, 45, 85, 0.3);
+      color: var(--red);
     }
 
-    .limit-note {
-      background: rgba(124,58,237,.08);
-      border: 1px solid rgba(124,58,237,.2);
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 12px;
-      color: #c4b5fd;
-      margin-bottom: 20px;
-      text-align: center;
+    .message-box.success {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: var(--green);
     }
+
+    .message-box.show { display: block; }
   </style>
 </head>
+
 <body>
   <div class="card">
-    <div class="logo">ZedPing</div>
-    <p class="subtitle">Key Generator — 24 giờ</p>
+    <div class="header">
+      <span class="logo">ZedPing Key⛈️</span>
+    </div>
 
-    <div class="limit-note">⏱ Mỗi key có hiệu lực <strong>24 giờ</strong></div>
+    <div class="key-info">
+      <div class="key-duration">24H</div>
+      <div class="key-links">✦ 2 LINKS ✦</div>
+    </div>
 
-    <ul class="step-list">
-      <li>
-        <span class="step-num">1</span>
-        Nhấn nút bên dưới để tạo link key
-      </li>
-      <li>
-        <span class="step-num">2</span>
-        Hoàn thành nhiệm vụ trên trang link4m
-      </li>
-      <li>
-        <span class="step-num">3</span>
-        Bạn sẽ được chuyển sang trang lấy key tự động
-      </li>
-    </ul>
+    <div class="divider"></div>
 
-    <button class="btn btn-primary" id="btn" onclick="getLink()">
-      🔑 Lấy Key Ngay
+    <button class="btn-gen" id="btnGen" onclick="generate()">
+      <span class="btn-text">[ TẠO KEY 24H ]</span>
     </button>
 
-    <div class="msg" id="msg"></div>
-
-    <hr class="divider" />
+    <div class="message-box" id="messageBox"></div>
+  </div>
 
   <script>
-    // ← Đổi thành Worker URL của bạn
-    const WORKER_URL = "https://zedping.phamlongsoftware.workers.dev";
+    const API_ENDPOINT = "/api/generate";
+    const selectedHours = 24;
 
-    const btn = document.getElementById("btn");
-    const msg = document.getElementById("msg");
+    async function generate() {
+      const btn = document.getElementById('btnGen');
+      const msgBox = document.getElementById('messageBox');
 
-    function showMsg(text, type) {
-      msg.textContent = text;
-      msg.className = "msg " + type;
-    }
+      msgBox.className = 'message-box';
+      msgBox.textContent = '';
 
-    async function getLink() {
       btn.disabled = true;
-      btn.innerHTML = '<span class="spinner"></span>Đang tạo link...';
-      msg.className = "msg";
+      btn.innerHTML = '<span class="btn-spinner"></span> ĐANG XỬ LÝ...';
 
       try {
-        const res  = await fetch(`${WORKER_URL}/genkey`);
-        const data = await res.json();
+        const res = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ hours: selectedHours })
+        });
 
-        if (data.success) {
-          showMsg("✅ Đang chuyển hướng sang trang lấy key...", "success");
-          setTimeout(() => { window.location.href = data.url; }, 800);
-        } else {
-          showMsg("❌ " + (data.message || "Lỗi không xác định"), "error");
-          btn.disabled = false;
-          btn.innerHTML = "🔑 Lấy Key Ngay";
+        const text = await res.text();
+        if (!text) {
+          throw new Error('API trả về response rỗng');
         }
-      } catch (e) {
-        showMsg("❌ Không kết nối được server. Thử lại!", "error");
+
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          console.error('Raw response:', text);
+          throw new Error('API trả về không phải JSON: ' + text.substring(0, 100));
+        }
+
+        if (!res.ok || !data.success) {
+          throw new Error(data.message || 'Lỗi tạo key');
+        }
+
+        window.location.href = data.url;
+
+      } catch (err) {
+        showError('❌ ' + err.message);
+      } finally {
         btn.disabled = false;
-        btn.innerHTML = "🔑 Lấy Key Ngay";
+        btn.innerHTML = '<span class="btn-text">[ TẠO KEY 24H ]</span>';
       }
+    }
+
+    function showError(msg) {
+      const box = document.getElementById('messageBox');
+      box.textContent = msg;
+      box.className = 'message-box error show';
+    }
+
+    function showSuccess(msg) {
+      const box = document.getElementById('messageBox');
+      box.textContent = msg;
+      box.className = 'message-box success show';
     }
   </script>
 </body>

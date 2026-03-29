@@ -1,353 +1,1419 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FakeLag — Key của bạn</title>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg:      #08090e;
-    --panel:   #0d0f18;
-    --border:  rgba(255,140,0,0.15);
-    --accent:  #ff8c00;
-    --accent2: #ffb347;
-    --dim:     rgba(255,140,0,0.08);
-    --text:    #f0ede8;
-    --muted:   #6b6560;
-    --red:     #ff3b30;
-    --green:   #30d158;
-  }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameBooster — Get Key</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://pl28957322.profitablecpmratenetwork.com/67/80/60/6780604853e95fcf0ec19f9571715fa6.js"></script>
+    <style>
+      :root {
+        --bg: #04060d;
+        --card: rgba(10, 14, 26, 0.85);
+        --accent: #00e5ff;
+        --accent2: #7b61ff;
+        --green: #00ffaa;
+        --text: #e8eaf0;
+        --muted: rgba(200, 210, 230, 0.45);
+        --border: rgba(0, 229, 255, 0.12);
+      }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Rajdhani', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    overflow-x: hidden;
-  }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-  body::before {
-    content: '';
-    position: fixed; inset: 0; z-index: 0;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,140,0,0.07), transparent),
-      repeating-linear-gradient(
-        0deg,
-        transparent, transparent 39px,
-        rgba(255,140,0,0.03) 39px, rgba(255,140,0,0.03) 40px
-      ),
-      repeating-linear-gradient(
-        90deg,
-        transparent, transparent 39px,
-        rgba(255,140,0,0.03) 39px, rgba(255,140,0,0.03) 40px
-      );
-    pointer-events: none;
-  }
+      html {
+        scroll-behavior: smooth;
+      }
 
-  .wrap {
-    position: relative; z-index: 1;
-    width: 100%; max-width: 400px;
-  }
-  .wrap::before, .wrap::after, .corner-br, .corner-bl {
-    content: '';
-    position: absolute;
-    width: 18px; height: 18px;
-    border-color: var(--accent);
-    border-style: solid;
-    opacity: 0.6;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .wrap::before { top: -1px; left: -1px;  border-width: 2px 0 0 2px; }
-  .wrap::after  { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
-  .corner-br    { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
-  .corner-bl    { bottom: -1px; left: -1px;  border-width: 0 0 2px 2px; }
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+      }
 
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 36px 32px 32px;
-    position: relative;
-    overflow: hidden;
-    animation: fadeIn 0.5s ease forwards;
-  }
+      .bg-grid {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(0, 229, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 229, 255, 0.025) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
 
-  @keyframes scan {
-    0%   { transform: translateY(-100%); opacity: 0; }
-    20%  { opacity: 1; }
-    80%  { opacity: 1; }
-    100% { transform: translateY(700%); opacity: 0; }
-  }
-  .card::after {
-    content: '';
-    position: absolute; left: 0; right: 0;
-    height: 1px; top: 0;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    animation: scan 5s ease-in-out infinite;
-    pointer-events: none;
-  }
+      .bg-orb {
+        position: fixed;
+        pointer-events: none;
+        z-index: 0;
+        border-radius: 50%;
+        filter: blur(80px);
+        animation: orbFloat 10s ease-in-out infinite alternate;
+      }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+      .bg-orb-1 {
+        width: 600px;
+        height: 600px;
+        top: -200px;
+        left: -200px;
+        background: rgba(0, 229, 255, 0.05);
+      }
 
-  /* ── Header ── */
-  .header { margin-bottom: 28px; }
-  .sys-tag {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.6rem;
-    color: var(--accent);
-    letter-spacing: 3px;
-    opacity: 0.7;
-    display: block;
-    margin-bottom: 6px;
-  }
-  .logo {
-    font-size: 2.2rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--text);
-    line-height: 1;
-  }
-  .logo em { font-style: normal; color: var(--accent); }
-  .tagline {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.62rem;
-    color: var(--muted);
-    margin-top: 8px;
-    letter-spacing: 1px;
-  }
+      .bg-orb-2 {
+        width: 400px;
+        height: 400px;
+        bottom: -100px;
+        right: -100px;
+        background: rgba(123, 97, 255, 0.06);
+        animation-delay: -4s;
+        animation-direction: alternate-reverse;
+      }
 
-  .div {
-    height: 1px;
-    background: linear-gradient(90deg, var(--accent), transparent);
-    margin: 24px 0;
-    opacity: 0.25;
-  }
+      @keyframes orbFloat {
+        from {
+          transform: scale(1) translate(0, 0);
+        }
 
-  /* ── Key display ── */
-  .key-label {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.6rem;
-    color: var(--muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    display: block;
-  }
+        to {
+          transform: scale(1.2) translate(15px, -15px);
+        }
+      }
 
-  .key-box {
-    background: rgba(48,209,88,0.05);
-    border: 1px solid rgba(48,209,88,0.25);
-    border-radius: 4px;
-    padding: 20px;
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .key-box.error-box {
-    background: rgba(255,59,48,0.06);
-    border-color: rgba(255,59,48,0.25);
-  }
-  .key-status {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .key-status .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    box-shadow: 0 0 8px var(--green);
-    animation: blink 2s infinite;
-  }
-  .key-status.err .dot {
-    background: var(--red);
-    box-shadow: 0 0 8px var(--red);
-    animation: none;
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.3; }
-  }
-  .key-status span { color: var(--green); }
-  .key-status.err span { color: var(--red); }
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(4, 6, 13, 0.7);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+      }
 
-  .key-value {
-    font-family: 'Fira Code', monospace;
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: 2px;
-    word-break: break-all;
-    line-height: 1.5;
-  }
-  .key-value.empty {
-    color: var(--red);
-    font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: 1px;
-  }
+      .nav-brand {
+        font-size: 1.1rem;
+        font-weight: 800;
+        letter-spacing: -0.3px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: var(--text);
+      }
 
-  /* ── Copy button ── */
-  .btn-copy {
-    width: 100%;
-    padding: 16px;
-    background: transparent;
-    border: 1px solid rgba(48,209,88,0.4);
-    border-radius: 4px;
-    color: var(--green);
-    font-family: 'Fira Code', monospace;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 3px;
-    cursor: pointer;
-    transition: all 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .btn-copy::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: var(--green);
-    transform: translateX(-100%);
-    transition: transform 0.25s ease;
-  }
-  .btn-copy:hover::before { transform: translateX(0); }
-  .btn-copy:hover { color: #000; }
-  .btn-copy:active { transform: scale(0.99); }
-  .btn-copy span { position: relative; z-index: 1; }
-  .btn-copy:disabled {
-    opacity: 0.3; cursor: not-allowed;
-  }
-  .btn-copy:disabled::before { display: none; }
+      .nav-brand span {
+        color: var(--accent);
+      }
 
-  .footer-tag {
-    margin-top: 20px;
-    font-family: 'Fira Code', monospace;
-    font-size: 0.58rem;
-    color: var(--muted);
-    letter-spacing: 1.5px;
-    text-align: center;
-    opacity: 0.5;
-  }
+      .nav-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 10px var(--green);
+        animation: pulse 2s infinite;
+      }
 
-  /* toast */
-  .toast {
-    position: fixed; bottom: 28px; left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: rgba(13,15,24,0.95);
-    border: 1px solid rgba(48,209,88,0.35);
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-family: 'Fira Code', monospace;
-    font-size: 0.72rem;
-    color: var(--green);
-    letter-spacing: 1px;
-    opacity: 0;
-    transition: all 0.25s ease;
-    pointer-events: none;
-    white-space: nowrap;
-    z-index: 999;
-  }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-</style>
-</head>
-<body>
+      @keyframes pulse {
 
-<div class="wrap">
-  <span class="corner-br"></span>
-  <span class="corner-bl"></span>
-  <div class="card">
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
 
-    <div class="header">
-      <span class="sys-tag">// Key của bạn</span>
-      <div class="logo">Fake<em>Lag</em></div><!-- ← Đổi tên app -->
-      <div class="tagline" id="subLine">&gt; key loaded successfully</div>
-    </div>
+        50% {
+          opacity: 0.6;
+          transform: scale(0.85);
+        }
+      }
 
-    <div class="div"></div>
+      .nav-badge {
+        font-size: 0.62rem;
+        color: var(--accent);
+        background: rgba(0, 229, 255, 0.1);
+        border: 1px solid rgba(0, 229, 255, 0.25);
+        padding: 3px 10px;
+        border-radius: 20px;
+      }
 
-    <span class="key-label">// Key của bạn</span>
-    <div class="key-box" id="keyBox">
-      <div class="key-status" id="keyStatus">
-        <span class="dot"></span>
-        <span>Key khả dụng</span>
+      .main-content {
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 24px;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 420px;
+        background: var(--card);
+        border: 1px solid rgba(0, 229, 255, 0.2);
+        border-radius: 28px;
+        padding: 40px 36px;
+        backdrop-filter: blur(24px);
+        box-shadow: 0 0 80px rgba(0, 229, 255, 0.07);
+        text-align: center;
+        animation: fadeUp 0.6s ease forwards;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        border-radius: 28px 28px 0 0;
+      }
+
+      .card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 50% 0%, rgba(0, 229, 255, 0.04), transparent 60%);
+        pointer-events: none;
+        border-radius: 28px;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card-icon-wrap {
+        width: 64px;
+        height: 64px;
+        border-radius: 20px;
+        margin: 0 auto 18px;
+        background: linear-gradient(135deg, rgba(0, 229, 255, 0.12), rgba(123, 97, 255, 0.12));
+        border: 1px solid rgba(0, 229, 255, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
+        animation: floatIcon 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes floatIcon {
+        from {
+          transform: translateY(0);
+        }
+
+        to {
+          transform: translateY(-6px);
+        }
+      }
+
+      .card-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        margin-bottom: 6px;
+      }
+
+      .card-title span {
+        color: var(--accent);
+      }
+
+      .card-sub {
+        font-size: 0.78rem;
+        color: var(--muted);
+        line-height: 1.5;
+        margin-bottom: 28px;
+      }
+
+      .datetime-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 28px;
+        padding: 14px 18px;
+        background: rgba(0, 229, 255, 0.04);
+        border: 1px solid rgba(0, 229, 255, 0.1);
+        border-radius: 12px;
+      }
+
+      .datetime-item {
+        text-align: center;
+      }
+
+      .datetime-val {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--accent);
+        display: block;
+      }
+
+      .datetime-lbl {
+        font-size: 0.6rem;
+        color: var(--muted);
+        margin-top: 2px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      .datetime-sep {
+        color: var(--border);
+        font-size: 1.2rem;
+      }
+
+      .key-section {
+        margin-bottom: 20px;
+      }
+
+      .key-label {
+        font-size: 0.62rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+        display: block;
+        text-align: left;
+      }
+
+      .key-input-wrap {
+        position: relative;
+      }
+
+      .key-input {
+        width: 100%;
+        padding: 16px 52px 16px 18px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(0, 229, 255, 0.2);
+        border-radius: 14px;
+        color: var(--accent);
+        outline: none;
+        letter-spacing: 1px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        caret-color: transparent;
+      }
+
+      .key-input:focus {
+        border-color: rgba(0, 229, 255, 0.4);
+        box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
+      }
+
+      .key-input::placeholder {
+        color: rgba(200, 210, 230, 0.2);
+      }
+
+      .copy-icon-btn {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 0.9rem;
+        transition: color 0.2s, opacity 0.2s;
+        padding: 4px;
+      }
+
+      .copy-icon-btn:not(:disabled):hover {
+        color: var(--accent);
+      }
+
+      .copy-icon-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      .btn-row {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 14px;
+        border-radius: 14px;
+        border: none;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 0.92rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent);
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .btn:not(:disabled):hover {
+        transform: translateY(-2px);
+      }
+
+      .btn:not(:disabled):hover::after {
+        opacity: 1;
+      }
+
+      .btn:not(:disabled):active {
+        transform: translateY(0);
+      }
+
+      .btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      .btn-copy {
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        color: #000;
+        box-shadow: 0 4px 24px rgba(0, 229, 255, 0.2);
+      }
+
+      .btn-copy:not(:disabled):hover {
+        box-shadow: 0 8px 36px rgba(0, 229, 255, 0.35);
+      }
+
+      .btn-music {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .btn-music:hover {
+        border-color: rgba(0, 229, 255, 0.3);
+        background: rgba(0, 229, 255, 0.06);
+      }
+
+      .btn-music.playing {
+        border-color: rgba(0, 255, 170, 0.3);
+        color: var(--green);
+        background: rgba(0, 255, 170, 0.05);
+      }
+
+      .cd-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(4, 6, 13, 0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.35s ease;
+      }
+
+      .cd-backdrop.closing {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .cd-box {
+        background: rgba(10, 14, 26, 0.97);
+        border: 1px solid rgba(0, 229, 255, 0.25);
+        border-radius: 28px;
+        padding: 44px 36px 36px;
+        max-width: 340px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 0 80px rgba(0, 229, 255, 0.1), 0 24px 64px rgba(0, 0, 0, 0.7);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.35s ease;
+      }
+
+      .cd-backdrop.closing .cd-box {
+        transform: translateY(20px);
+      }
+
+      .cd-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 10%;
+        right: 10%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      }
+
+      .cd-ring-wrap {
+        position: relative;
+        width: 96px;
+        height: 96px;
+        margin: 0 auto 24px;
+      }
+
+      .cd-svg {
+        width: 96px;
+        height: 96px;
+        transform: rotate(-90deg);
+        display: block;
+      }
+
+      .cd-track {
+        fill: none;
+        stroke: rgba(0, 229, 255, 0.1);
+        stroke-width: 5;
+      }
+
+      .cd-arc {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-dasharray: 270;
+        stroke-dashoffset: 0;
+        transition: stroke-dashoffset 1s linear;
+        filter: drop-shadow(0 0 5px rgba(0, 229, 255, 0.6));
+      }
+
+      .cd-num {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: var(--accent);
+        letter-spacing: -2px;
+        transition: color 0.3s;
+      }
+
+      .cd-title {
+        font-size: 1.15rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+
+      .cd-title span {
+        color: var(--accent);
+      }
+
+      .cd-desc {
+        font-size: 0.78rem;
+        color: var(--muted);
+        line-height: 1.65;
+        margin-bottom: 28px;
+      }
+
+      .cd-btn {
+        width: 100%;
+        padding: 15px;
+        border-radius: 14px;
+        border: none;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 0.96rem;
+        font-weight: 700;
+        cursor: pointer;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        color: #000;
+        box-shadow: 0 4px 24px rgba(0, 229, 255, 0.3);
+        transition: transform 0.15s, box-shadow 0.15s, opacity 0.25s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+      }
+
+      .cd-btn:disabled {
+        opacity: 0.32;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+
+      .cd-btn:not(:disabled):hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 36px rgba(0, 229, 255, 0.45);
+      }
+
+      .cd-btn:not(:disabled):active {
+        transform: translateY(0);
+      }
+
+      .cd-status {
+        margin-top: 14px;
+        font-size: 0.73rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        min-height: 20px;
+      }
+
+      .player-overlay {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 200;
+        width: 260px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(16px);
+        transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .player-overlay.visible {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+      }
+
+      .player-card {
+        background: rgba(8, 12, 24, 0.55);
+        border: 1px solid rgba(0, 229, 255, 0.18);
+        border-radius: 18px;
+        padding: 12px 14px 10px;
+        backdrop-filter: blur(32px) saturate(180%);
+        -webkit-backdrop-filter: blur(32px) saturate(180%);
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04) inset, 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .player-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 10%;
+        right: 10%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.5), transparent);
+      }
+
+      .player-eq {
+        display: flex;
+        align-items: flex-end;
+        gap: 2px;
+        height: 16px;
+        width: 20px;
+        flex-shrink: 0;
+      }
+
+      .player-eq span {
+        display: block;
+        width: 3px;
+        border-radius: 2px;
+        background: var(--green);
+        animation: eqBar 0.8s ease-in-out infinite alternate;
+      }
+
+      .player-eq span:nth-child(1) {
+        height: 40%;
+        animation-delay: 0s;
+      }
+
+      .player-eq span:nth-child(2) {
+        height: 100%;
+        animation-delay: 0.15s;
+      }
+
+      .player-eq span:nth-child(3) {
+        height: 60%;
+        animation-delay: 0.3s;
+      }
+
+      .player-eq span:nth-child(4) {
+        height: 80%;
+        animation-delay: 0.1s;
+      }
+
+      .player-eq.paused span {
+        animation-play-state: paused;
+      }
+
+      @keyframes eqBar {
+        from {
+          transform: scaleY(0.3);
+          opacity: 0.5;
+        }
+
+        to {
+          transform: scaleY(1);
+          opacity: 1;
+        }
+      }
+
+      .player-top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .player-thumb {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(123, 97, 255, 0.2));
+        border: 1px solid rgba(0, 229, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .player-thumb-spin {
+        position: absolute;
+        inset: 0;
+        background: conic-gradient(from 0deg, rgba(0, 229, 255, 0.1), transparent, rgba(0, 229, 255, 0.1));
+        animation: thumbSpin 4s linear infinite;
+        border-radius: 12px;
+      }
+
+      .player-thumb.paused .player-thumb-spin {
+        animation-play-state: paused;
+      }
+
+      @keyframes thumbSpin {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .player-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .player-song {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--text);
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+      }
+
+      .player-song-inner {
+        display: inline-block;
+        animation: marquee 14s linear infinite;
+        padding-right: 40px;
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .player-artist {
+        font-size: 0.6rem;
+        color: var(--muted);
+        margin-top: 2px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .player-progress-wrap {
+        margin-bottom: 8px;
+      }
+
+      .player-time-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.55rem;
+        color: var(--muted);
+        margin-bottom: 5px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .player-bar-track {
+        position: relative;
+        height: 4px;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.08);
+        cursor: pointer;
+        overflow: hidden;
+      }
+
+      .player-bar-fill {
+        height: 100%;
+        border-radius: 99px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        width: 0%;
+        transition: width 0.3s linear;
+        box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+        position: relative;
+      }
+
+      .player-bar-fill::after {
+        content: '';
+        position: absolute;
+        right: -1px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 8px var(--accent);
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .player-bar-track:hover .player-bar-fill::after {
+        opacity: 1;
+      }
+
+      .player-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+      }
+
+      .ctrl-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        color: var(--muted);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+
+      .ctrl-btn:hover {
+        color: var(--text);
+        border-color: rgba(0, 229, 255, 0.3);
+        background: rgba(0, 229, 255, 0.08);
+        transform: scale(1.08);
+      }
+
+      .ctrl-btn:active {
+        transform: scale(0.95);
+      }
+
+      .ctrl-btn.sm {
+        width: 28px;
+        height: 28px;
+        font-size: 0.65rem;
+      }
+
+      .ctrl-btn.lg {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        border: none;
+        color: #000;
+        box-shadow: 0 4px 20px rgba(0, 229, 255, 0.3);
+      }
+
+      .ctrl-btn.lg:hover {
+        box-shadow: 0 6px 28px rgba(0, 229, 255, 0.5);
+        color: #000;
+      }
+
+      .player-close {
+        position: absolute;
+        top: 12px;
+        right: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        color: var(--muted);
+        font-size: 0.6rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        z-index: 1;
+      }
+
+      .player-close:hover {
+        color: var(--text);
+        background: rgba(255, 77, 109, 0.15);
+        border-color: rgba(255, 77, 109, 0.3);
+      }
+
+      .toast {
+        position: fixed;
+        top: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-80px);
+        background: rgba(10, 14, 26, 0.95);
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        color: var(--text);
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 999;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        white-space: nowrap;
+      }
+
+      .toast.show {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .toast i {
+        color: var(--green);
+      }
+
+      .toast.error {
+        border-color: rgba(255, 77, 109, 0.4);
+      }
+
+      .toast.error i {
+        color: #ff4d6d;
+      }
+
+      .banner-wrap {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 24px 36px;
+      }
+
+      footer {
+        position: relative;
+        z-index: 1;
+        border-top: 1px solid var(--border);
+        background: rgba(10, 14, 26, 0.6);
+        backdrop-filter: blur(12px);
+        padding: 32px 24px;
+      }
+
+      .footer-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .footer-copy {
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+
+      .footer-copy span {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 18px;
+      }
+
+      .footer-links a {
+        font-size: 0.75rem;
+        color: rgba(0, 229, 255, 0.5);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: var(--accent);
+      }
+
+      @media (max-width: 460px) {
+        .card {
+          padding: 32px 22px;
+        }
+
+        .cd-box {
+          padding: 36px 24px 28px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .footer-inner {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="cd-backdrop" id="cdBackdrop">
+      <div class="cd-box">
+        <div class="cd-ring-wrap">
+          <svg class="cd-svg" viewBox="0 0 96 96">
+            <circle class="cd-track" cx="48" cy="48" r="43" />
+            <circle class="cd-arc" id="cdArc" cx="48" cy="48" r="43" />
+          </svg>
+          <div class="cd-num" id="cdNum">10</div>
+        </div>
+        <div class="cd-title">Xác nhận <span>nhận key</span></div>
+        <div class="cd-desc">Vui lòng đợi hệ thống xác minh.<br>Sau khi đếm ngược xong bạn có thể lấy key.</div>
+        <button class="cd-btn" id="cdBtn" disabled onclick="onDialogOK()">
+          <i class="fas fa-key"></i> Lấy Key Ngay
+        </button>
+        <div class="cd-status" id="cdStatus">
+          <i class="fas fa-circle-notch fa-spin"></i>&nbsp;
+          Đang xác minh… vui lòng đợi <b id="cdSec">&nbsp;10&nbsp;</b>s
+        </div>
       </div>
-      <div class="key-value" id="keyVal">—</div>
     </div>
 
-    <button class="btn-copy" id="btnCopy" onclick="copyKey()">
-      <span id="btnText">[ COPY KEY ]</span>
-    </button>
+    <div class="bg-grid"></div>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
 
-  </div>
-</div>
+    <div id="toast" class="toast">
+      <i class="fas fa-check-circle"></i>
+      <span>Đã copy key!</span>
+    </div>
 
-<div class="footer-tag">FakeLag KEY SYSTEM — AUTHORIZED ACCESS ONLY</div>
-<div class="toast" id="toast">✓ Đã copy key</div>
+    <audio id="bgMusic" src="assets/music1.mp3" preload="auto"></audio>
 
-<script>
-  const key    = new URLSearchParams(location.search).get('key') || '';
-  const keyVal = document.getElementById('keyVal');
-  const keyBox = document.getElementById('keyBox');
-  const status = document.getElementById('keyStatus');
-  const subLine = document.getElementById('subLine');
-  const btnCopy = document.getElementById('btnCopy');
+    <div class="player-overlay" id="playerOverlay">
+      <div class="player-card">
+        <button class="player-close" id="playerClose" title="Đóng"><i class="fas fa-times"></i></button>
+        <div class="player-top">
+          <div class="player-thumb" id="playerThumb">
+            🎵
+            <div class="player-thumb-spin"></div>
+          </div>
+          <div class="player-info">
+            <span class="player-song">
+              <span class="player-song-inner" id="songTitle">
+                Obito - Con kể Ba nghe &nbsp;&nbsp;•&nbsp;&nbsp; Obito - Con kể Ba nghe &nbsp;&nbsp;•&nbsp;&nbsp;
+              </span>
+            </span>
+            <span class="player-artist" id="songArtist">Obito · lofi / R&B</span>
+          </div>
+          <div class="player-eq" id="playerEq">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="player-progress-wrap">
+          <div class="player-time-row">
+            <span id="timeCurrent">0:00</span>
+            <span id="timeDuration">--:--</span>
+          </div>
+          <div class="player-bar-track" id="progressTrack">
+            <div class="player-bar-fill" id="progressFill"></div>
+          </div>
+        </div>
+        <div class="player-controls">
+          <button class="ctrl-btn sm" id="btnPrev" title="Bài trước"><i class="fas fa-backward-step"></i></button>
+          <button class="ctrl-btn lg" id="btnPlay" title="Phát / Tạm dừng"><i class="fas fa-pause" id="playIcon"></i></button>
+          <button class="ctrl-btn sm" id="btnNext" title="Bài tiếp theo"><i class="fas fa-forward-step"></i></button>
+        </div>
+      </div>
+    </div>
 
-  if (key) {
-    keyVal.textContent = key;
-  } else {
-    keyVal.textContent  = 'KEY NOT FOUND';
-    keyVal.classList.add('empty');
-    keyBox.classList.add('error-box');
-    status.classList.add('err');
-    status.querySelector('span:last-child').textContent = 'ERROR';
-    subLine.textContent = '> invalid or missing key parameter';
-    btnCopy.disabled = true;
-  }
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <div class="nav-dot"></div>
+        Game<span>Booster</span>
+      </a>
+      <span class="nav-badge">v1.5</span>
+    </nav>
 
-  function copyKey() {
-    if (!key) return;
-    const btn  = document.getElementById('btnText');
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(key).then(showToast).catch(fallback);
-    } else {
-      fallback();
-    }
-    btn.textContent = '[ COPIED! ]';
-    setTimeout(() => { btn.textContent = '[ COPY KEY ]'; }, 2000);
-  }
+    <div class="main-content">
+      <div class="card">
+        <div class="card-icon-wrap">🔑</div>
+        <div class="card-title">Key <span>Của Bạn</span></div>
+        <div class="card-sub">Sao chép key bên dưới và dán vào app để kích hoạt lưu ý qua 12 giờ đêm key sẽ hết tác dụng</div>
 
-  function fallback() {
-    const tmp = document.createElement('textarea');
-    tmp.value = key;
-    document.body.appendChild(tmp);
-    tmp.select(); tmp.setSelectionRange(0, 99999);
-    document.execCommand('copy');
-    document.body.removeChild(tmp);
-    showToast();
-  }
+        <div class="datetime-row">
+          <div class="datetime-item">
+            <span class="datetime-val" id="clockVal">--:--:--</span>
+            <span class="datetime-lbl">Giờ hiện tại</span>
+          </div>
+          <span class="datetime-sep">·</span>
+          <div class="datetime-item">
+            <span class="datetime-val" id="dateVal">--/--/----</span>
+            <span class="datetime-lbl">Ngày hôm nay</span>
+          </div>
+        </div>
 
-  function showToast() {
-    const t = document.getElementById('toast');
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2000);
-  }
-</script>
-</body>
+        <div class="key-section">
+          <span class="key-label"><i class="fas fa-key" style="margin-right:6px;"></i>Key của bạn</span>
+          <div class="key-input-wrap">
+            <input class="key-input" id="keyInput" readonly placeholder="Đang tải key...">
+            <button class="copy-icon-btn" id="copyIconBtn" onclick="copyKey()" title="Copy" disabled>
+              <i class="fas fa-copy"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="key-section" style="margin-bottom: 24px;">
+          <span class="key-label"><i class="fas fa-clock" style="margin-right:6px;"></i>Thời gian tạo key</span>
+          <div class="key-input-wrap">
+            <input class="key-input" id="timeInput" readonly placeholder="Đang tải thời gian..." style="padding-right: 18px;">
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-copy" id="btnCopy" onclick="copyKey()" disabled>
+            <i class="fas fa-lock" id="btnCopyIcon"></i>
+            <span id="btnCopyTxt">Chờ xác minh...</span>
+          </button>
+          <button class="btn btn-music" id="musicBtn" onclick="toggleMusic()">
+            <i class="fas fa-music" id="musicIcon"></i>
+            <span id="musicBtnText">Bật Nhạc</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-copy">© 2026 <span>GameBooster</span> · All rights reserved</div>
+        <div class="footer-links">
+          <a href="terms.html">Điều khoản</a>
+          <a href="privacy.html">Bảo mật</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+
+      (function() {
+        var TOTAL = 10;
+        var CIRC = 2 * Math.PI * 43; 
+
+        var arc = document.getElementById('cdArc');
+        var numEl = document.getElementById('cdNum');
+        var btn = document.getElementById('cdBtn');
+        var secEl = document.getElementById('cdSec');
+        var statusEl = document.getElementById('cdStatus');
+
+        arc.setAttribute('stroke-dasharray', CIRC);
+        arc.setAttribute('stroke-dashoffset', '0');
+
+        var rem = TOTAL;
+
+        var tick = setInterval(function() {
+          rem--;
+          if (numEl) numEl.textContent = rem;
+          if (secEl) secEl.textContent = rem;
+
+          arc.style.strokeDashoffset = (CIRC * (1 - rem / TOTAL)).toFixed(2);
+
+          if (rem <= 0) {
+            clearInterval(tick);
+            arc.style.strokeDashoffset = CIRC.toFixed(2);
+            numEl.textContent = '✓';
+            numEl.style.color = 'var(--green)';
+            numEl.style.fontSize = '1.8rem';
+            btn.disabled = false;
+            if (statusEl) {
+              statusEl.innerHTML = '<i class="fas fa-check-circle" style="color:var(--green)"></i>&nbsp; Xác minh thành công! Nhấn để lấy key.';
+              statusEl.style.color = 'var(--green)';
+            }
+          }
+        }, 1000);
+      })();
+
+      function onDialogOK() {
+
+        var bd = document.getElementById('cdBackdrop');
+        bd.classList.add('closing');
+        setTimeout(function() {
+          bd.style.display = 'none';
+        }, 380);
+
+        var btnCopy = document.getElementById('btnCopy');
+        var copyIconBtn = document.getElementById('copyIconBtn');
+        var iconEl = document.getElementById('btnCopyIcon');
+        var txtEl = document.getElementById('btnCopyTxt');
+
+        if (btnCopy) {
+          btnCopy.disabled = false;
+        }
+        if (copyIconBtn) {
+          copyIconBtn.disabled = false;
+        }
+        if (iconEl) {
+          iconEl.className = 'fas fa-copy';
+        }
+        if (txtEl) {
+          txtEl.textContent = 'Sao Chép Key';
+        }
+      }
+
+      function updateTime() {
+        var now = new Date();
+        var pad = function(n) {
+          return String(n).padStart(2, '0');
+        };
+        document.getElementById('clockVal').textContent =
+          pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+        document.getElementById('dateVal').textContent =
+          pad(now.getDate()) + '/' + pad(now.getMonth() + 1) + '/' + now.getFullYear();
+        document.title = 'Key ' + pad(now.getDate()) + '/' + (now.getMonth() + 1) + ' — GameBooster';
+      }
+      updateTime();
+      setInterval(updateTime, 1000);
+
+      (function() {
+        var params = new URLSearchParams(location.search);
+        var key = params.get('key') || '';
+        var time = params.get('time') || '';
+
+        var inp = document.getElementById('keyInput');
+        if (key) {
+          inp.value = key;
+        } else {
+          inp.placeholder = 'Không tìm thấy key';
+        }
+
+        var timeInp = document.getElementById('timeInput');
+        if (time) {
+          timeInp.value = time;
+        } else {
+          timeInp.placeholder = 'Chưa có thông tin ngày tạo';
+        }
+      })();
+
+      function copyKey() {
+        var val = document.getElementById('keyInput').value;
+        if (!val) return showToast('Không có key để copy!', true);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(val)
+            .then(function() {
+              showToast('Đã copy key!');
+            })
+            .catch(function() {
+              fallbackCopy(val);
+            });
+        } else {
+          fallbackCopy(val);
+        }
+      }
+
+      function fallbackCopy(val) {
+        var inp = document.getElementById('keyInput');
+        inp.select();
+        inp.setSelectionRange(0, 99999);
+        try {
+          document.execCommand('copy');
+          showToast('Đã copy key!');
+        } catch (e) {
+          showToast('Không thể copy, hãy copy thủ công!', true);
+        }
+      }
+
+      function showToast(msg, isErr) {
+        var t = document.getElementById('toast');
+        var ic = t.querySelector('i');
+        t.querySelector('span').textContent = msg;
+        if (isErr) {
+          t.classList.add('error');
+          ic.className = 'fas fa-times-circle';
+        } else {
+          t.classList.remove('error');
+          ic.className = 'fas fa-check-circle';
+        }
+        t.classList.add('show');
+        setTimeout(function() {
+          t.classList.remove('show');
+        }, 2200);
+      }
+
+      var playlist = [{
+          src: 'assets/music1.mp3',
+          title: 'Obito - Con kể Ba nghe',
+          artist: 'Obito · lofi / R&B'
+        },
+        {
+          src: 'assets/music2.mp3',
+          title: 'Obito - Tell The Kids I Love Them ft. SHIKI',
+          artist: 'Obito ft. SHIKI · lofi / R&B'
+        },
+        {
+          src: 'assets/music3.mp3',
+          title: 'Lux - Đó chỉ là thành phố của anh (Prod. New$oulZ) | tas release',
+          artist: 'Lux Prod. New$oulZ'
+        },
+      ];
+      var currentIdx = 0;
+
+      var music = document.getElementById('bgMusic');
+      var overlay = document.getElementById('playerOverlay');
+      var btnPlay = document.getElementById('btnPlay');
+      var playIcon = document.getElementById('playIcon');
+      var musicBtn = document.getElementById('musicBtn');
+      var musicIcon = document.getElementById('musicIcon');
+      var musicTxt = document.getElementById('musicBtnText');
+      var progressFill = document.getElementById('progressFill');
+      var timeCurrent = document.getElementById('timeCurrent');
+      var timeDuration = document.getElementById('timeDuration');
+      var progressTrack = document.getElementById('progressTrack');
+      var playerEq = document.getElementById('playerEq');
+      var playerThumb = document.getElementById('playerThumb');
+      var songTitleEl = document.getElementById('songTitle');
+      var songArtistEl = document.getElementById('songArtist');
+
+      function fmtTime(s) {
+        if (!isFinite(s)) return '--:--';
+        return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+      }
+
+      function loadTrack(idx, autoplay) {
+        var t = playlist[idx];
+        music.src = t.src;
+        music.load();
+        songTitleEl.innerHTML = t.title + ' &nbsp;&nbsp;•&nbsp;&nbsp; ' + t.title + ' &nbsp;&nbsp;•&nbsp;&nbsp;';
+        songArtistEl.textContent = t.artist;
+        progressFill.style.width = '0%';
+        timeCurrent.textContent = '0:00';
+        timeDuration.textContent = '--:--';
+        if (autoplay) music.play().then(function() {
+          setPlayingUI(true);
+        }).catch(function() {});
+      }
+
+      function setPlayingUI(on) {
+        playIcon.className = on ? 'fas fa-pause' : 'fas fa-play';
+        musicIcon.className = on ? 'fas fa-pause' : 'fas fa-music';
+        musicTxt.textContent = on ? 'Tắt Nhạc' : 'Bật Nhạc';
+        if (on) {
+          musicBtn.classList.add('playing');
+          playerEq.classList.remove('paused');
+          playerThumb.classList.remove('paused');
+        } else {
+          musicBtn.classList.remove('playing');
+          playerEq.classList.add('paused');
+          playerThumb.classList.add('paused');
+        }
+      }
+
+      function showPlayer() {
+        overlay.classList.add('visible');
+      }
+
+      function hidePlayer() {
+        overlay.classList.remove('visible');
+      }
+
+      function toggleMusic() {
+        if (music.paused) {
+          music.play().then(function() {
+            showPlayer();
+            setPlayingUI(true);
+          }).catch(function() {});
+        } else {
+          music.pause();
+          setPlayingUI(false);
+        }
+      }
+
+      btnPlay.addEventListener('click', function() {
+        if (music.paused) music.play().then(function() {
+          setPlayingUI(true);
+        }).catch(function() {});
+        else {
+          music.pause();
+          setPlayingUI(false);
+        }
+      });
+      document.getElementById('btnPrev').addEventListener('click', function() {
+        if (music.currentTime > 3) {
+          music.currentTime = 0;
+        } else {
+          currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
+          loadTrack(currentIdx, !music.paused);
+        }
+      });
+      document.getElementById('btnNext').addEventListener('click', function() {
+        currentIdx = (currentIdx + 1) % playlist.length;
+        loadTrack(currentIdx, !music.paused);
+      });
+      document.getElementById('playerClose').addEventListener('click', function() {
+        hidePlayer();
+        music.pause();
+        music.currentTime = 0;
+        setPlayingUI(false);
+      });
+      music.addEventListener('timeupdate', function() {
+        if (!isFinite(music.duration)) return;
+        progressFill.style.width = (music.currentTime / music.duration * 100) + '%';
+        timeCurrent.textContent = fmtTime(music.currentTime);
+        timeDuration.textContent = fmtTime(music.duration);
+      });
+      music.addEventListener('loadedmetadata', function() {
+        timeDuration.textContent = fmtTime(music.duration);
+      });
+      progressTrack.addEventListener('click', function(e) {
+        var r = progressTrack.getBoundingClientRect();
+        music.currentTime = ((e.clientX - r.left) / r.width) * music.duration;
+      });
+      music.addEventListener('ended', function() {
+        currentIdx = (currentIdx + 1) % playlist.length;
+        loadTrack(currentIdx, true);
+      });
+    </script>
+
+  </body>
+
 </html>
