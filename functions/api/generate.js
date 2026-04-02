@@ -1,9 +1,6 @@
-// Cloudflare Pages Function - /api/generate
-// File: functions/api/generate.js
-
 const CONFIG = {
   FIREBASE_URL: "https://zedping999-default-rtdb.asia-southeast1.firebasedatabase.app",
-  FIREBASE_SECRET: "eeqLA8qlmxD1Wna21p6ds3xPj0kTowWOoM7vpAg6"
+  FIREBASE_SECRET: "eeqLA8qlmxD1Wna21p6ds3xPj0kTowWOoM7vpAg6",
 };
 
 const URL_TEMPLATES = {
@@ -26,7 +23,7 @@ function generateKey(keyFormat) {
   const charset = charsetMap[keyFormat.Charset] || charsetMap['AZ09'];
   const segments = keyFormat.Segments || 4;
   const charsPerSeg = keyFormat.CharsPerSegment || 4;
-  const prefix = keyFormat.Prefix || 'GB';
+  const prefix = keyFormat.Prefix || 'ZedPing';
 
   let key = prefix;
   for (let i = 0; i < segments; i++) {
@@ -39,13 +36,11 @@ function generateKey(keyFormat) {
   return key;
 }
 
-// --- HÀM TÍNH THỜI GIAN ĐÃ FIX UTC+7 ---
 function calculateExpiration(hours) {
   const now = new Date();
-  // Lấy timestamp hiện tại, cộng thêm số giờ của Key + 7 giờ (múi giờ VN)
+  // Giờ Việt Nam = Giờ hiện tại + 7 + số giờ Key có hiệu lực
   const vnTime = new Date(now.getTime() + (hours + 7) * 60 * 60 * 1000);
 
-  // Sử dụng getUTC để lấy dữ liệu từ mốc thời gian đã được offset +7
   const yyyy = vnTime.getUTCFullYear();
   const mm = String(vnTime.getUTCMonth() + 1).padStart(2, '0');
   const dd = String(vnTime.getUTCDate()).padStart(2, '0');
@@ -60,13 +55,13 @@ function calculateExpiration(hours) {
 async function loadConfig() {
   const url = `${CONFIG.FIREBASE_URL}/Config.json?auth=${CONFIG.FIREBASE_SECRET}`;
   const res = await fetch(url);
-  if (!res.ok) throw new Error('Cannot load config from Firebase');
+  if (!res.ok) throw new Error('Không thể tải cấu hình từ Firebase');
   return await res.json();
 }
 
 async function shortenUrl(provider, targetUrl) {
   const template = URL_TEMPLATES[provider.Kind];
-  if (!template) throw new Error(`Unknown provider: ${provider.Kind}`);
+  if (!template) throw new Error(`Không hỗ trợ provider: ${provider.Kind}`);
 
   const apiUrl = template(provider.Token, targetUrl);
   
@@ -75,20 +70,19 @@ async function shortenUrl(provider, targetUrl) {
     headers: { 'Accept': 'application/json' }
   });
   
-  if (!res.ok) throw new Error(`HTTP ${res.status} from ${provider.Kind}`);
+  if (!res.ok) throw new Error(`Lỗi kết nối API rút gọn link (${res.status})`);
   
   const data = await res.json();
   
-  const shortUrl = data.shortenedUr1 || 
+  // Đã sửa lỗi chính tả shortenedUr1 thành shortenedUrl
+  const shortUrl = data.shortenedUrl || 
                   data.shortened || 
                   data.short_url || 
                   data.url || 
-                  data.shortenedUrl ||
-                  data.link;
+                  data.link ||
+                  data.shortenedUr1; 
                   
-  if (!shortUrl) {
-    throw new Error(`No shortened URL in ${provider.Kind} response`);
-  }
+  if (!shortUrl) throw new Error(`Provider ${provider.Kind} không trả về link rút gọn!`);
   
   return shortUrl;
 }
@@ -103,29 +97,35 @@ export async function onRequest(context) {
   };
 
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders });
-  if (request.method !== "POST") return new Response(JSON.stringify({ message: "Method not allowed" }), { status: 405, headers: corsHeaders });
+  if (request.method !== "POST") return new Response(JSON.stringify({ message: "Chỉ chấp nhận phương thức POST" }), { status: 405, headers: corsHeaders });
 
   try {
     const body = await request.json();
-    const { hours, keyType } = body;
-    const h = parseInt(hours) || parseInt(keyType) || 24;
+    const { token, hours } = body;
+    // Lấy số giờ từ frontend, mặc định là 5 nếu không có
+    const h = parseInt(hours) || 24;
 
-    if (h !== 12 && h !== 24) return new Response(JSON.stringify({ message: "hours phải là 12 hoặc 24" }), { status: 400, headers: corsHeaders });
-
+    // 2. Load Config từ Firebase
     const config = await loadConfig();
-    if (!config) return new Response(JSON.stringify({ message: "Không đọc được config từ Firebase!" }), { status: 500, headers: corsHeaders });
+    if (!config) return new Response(JSON.stringify({ message: "Lỗi hệ thống: Không có config!" }), { status: 500, headers: corsHeaders });
 
-    const providers12h = (config.LinkProviders12h || []).filter(p => p.Enabled && p.Token);
-    const providers24h = (config.LinkProviders24h || []).filter(p => p.Enabled && p.Token);
+    // 3. Cơ chế LAZY: Tìm provider tương ứng, nếu không thấy thì dùng tạm 12h
+    let providers = (config[`LinkProviders${h}h`] || []).filter(p => p.Enabled && p.Token);
+    
+    if (providers.length === 0) {
+      console.log(`Fallback: Không tìm thấy config ${h}h, mượn tạm config 12h.`);
+      providers = (config.LinkProviders12h || []).filter(p => p.Enabled && p.Token);
+    }
 
-    if (h === 12 && providers12h.length === 0) return new Response(JSON.stringify({ message: "Chưa cấu hình provider 12h!" }), { status: 400, headers: corsHeaders });
-    if (h === 24 && providers24h.length === 0) return new Response(JSON.stringify({ message: "Chưa cấu hình provider 24h!" }), { status: 400, headers: corsHeaders });
+    if (providers.length === 0) {
+      return new Response(JSON.stringify({ message: "Hệ thống chưa cấu hình Link Provider!" }), { status: 400, headers: corsHeaders });
+    }
 
-    const keyFormat = config.KeyFormat || { Prefix: 'GB', Segments: 4, CharsPerSegment: 4, Charset: 'AZ09' };
+    // 4. Tạo Key và tính thời gian hết hạn (theo đúng số giờ h)
+    const keyFormat = config.KeyFormat || { Prefix: 'ZedPing', Segments: 4, CharsPerSegment: 4, Charset: 'AZ09' };
     const key = generateKey(keyFormat);
     const exp = calculateExpiration(h);
 
-    // Lấy ngày tạo chuẩn VN để đồng bộ
     const vnNow = new Date(new Date().getTime() + 7 * 60 * 60 * 1000);
     const createdAt = vnNow.getUTCFullYear() + '-' + String(vnNow.getUTCMonth() + 1).padStart(2, '0') + '-' + String(vnNow.getUTCDate()).padStart(2, '0');
 
@@ -137,31 +137,43 @@ export async function onRequest(context) {
       MaxDevices: config.MaxDevices || 1
     };
 
+    // 5. Lưu Key vào nhánh NormalKey
     const saveRes = await fetch(`${CONFIG.FIREBASE_URL}/ValidKeys/NormalKey/${key}.json?auth=${CONFIG.FIREBASE_SECRET}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(keyData)
     });
     
-    if (!saveRes.ok) throw new Error("Lỗi lưu key vào Firebase!");
+    if (!saveRes.ok) throw new Error("Không thể lưu Key vào cơ sở dữ liệu!");
 
-    const callbackUrl = config.CallbackUrl || "https://gamebooster.thedev.me/getkey";
+    // 6. Tạo link đích và thực hiện rút gọn link
+    const callbackUrl = config.CallbackUrl || "https://zedping.pages.dev/getkey";
     const separator = callbackUrl.includes('?') ? '&' : '?';
-    let finalUrl = `${callbackUrl}${separator}key=${encodeURIComponent(key)}`;
+    const finalUrl = `${callbackUrl}${separator}key=${encodeURIComponent(key)}`;
 
     let shortenedUrl = "";
-    if (h === 12) {
-      shortenedUrl = await shortenUrl(providers12h[0], finalUrl);
+    // Nếu chỉ có 1 provider (như trường hợp 12h của bạn), rút gọn 1 lần
+    if (providers.length === 1) {
+      shortenedUrl = await shortenUrl(providers[0], finalUrl);
     } else {
-      const chain = [...providers24h].reverse();
+      // Nếu có nhiều provider (như 24h), chạy vòng lặp rút gọn lồng nhau
       let currentUrl = finalUrl;
-      for (const provider of chain) currentUrl = await shortenUrl(provider, currentUrl);
+      const chain = [...providers].reverse();
+      for (const provider of chain) {
+        currentUrl = await shortenUrl(provider, currentUrl);
+      }
       shortenedUrl = currentUrl;
     }
 
-    return new Response(JSON.stringify({ success: true, url: shortenedUrl, key: key, hours: h }), { status: 200, headers: corsHeaders });
+    // 7. Trả kết quả về cho giao diện
+    return new Response(JSON.stringify({ 
+      success: true, 
+      url: shortenedUrl, 
+      key: key, 
+      hours: h 
+    }), { status: 200, headers: corsHeaders });
 
   } catch (e) {
-    return new Response(JSON.stringify({ message: "Server lỗi: " + e.message }), { status: 500, headers: corsHeaders });
+    return new Response(JSON.stringify({ message: "Lỗi xử lý: " + e.message }), { status: 500, headers: corsHeaders });
   }
 }
